@@ -1,16 +1,18 @@
+import { useContext } from "react";
 import "./App.css";
 import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
 import Register from "./components/Register"
 import Login from "./components/Login";
 import Nav from "./components/Nav";
-import { useState } from "react";
+import { UserContext } from "./providers/UserProvider";
 
 function App() {
-	const [loggedIn, setLoggedIn] = useState(false)
+	const { user} = useContext(UserContext)
+
 	return (
 		<div className="App">
 			<Router>
-				<Nav loggedIn={loggedIn}/>
+				<Nav/>
 				<main>
 					<Routes>
 						<Route path="/" element={
