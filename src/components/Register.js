@@ -39,7 +39,7 @@ export default function Register() {
 
 	return(
 		<>
-			<form onSubmit={handleSubmit}>
+			<form onSubmit={handleSubmit} className="register-form">
 				{formError && <div>{formErrorMsg}</div>}
 				<FormControl>
 					<TextField label="Email" type="email" name="email" variant="standard" />

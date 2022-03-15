@@ -1,0 +1,21 @@
+
+.App {
+	height: 100vh;
+}
+
+.register-form {
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	flex-direction: column;
+	margin-top: 50px;
+}
+
+.register-form > .MuiFormControl-root {
+	width: 500px;
+}
+
+a {
+	text-decoration: none;
+	color: inherit;
+}
