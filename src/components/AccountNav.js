@@ -13,7 +13,7 @@ import { UserContext } from "../providers/UserProvider";
 const settings = ["Account", "Dashboard", "Logout"];
 
 export default function AccountNav() {
-	const { user } = useContext(UserContext)
+	const { user, logout } = useContext(UserContext)
 	const [anchorElUser, setAnchorElUser] = useState(null);
 
 	const handleOpenUserMenu = (event) => {
@@ -27,11 +27,14 @@ export default function AccountNav() {
 	const handleUserMenu = (e) => {
 		setAnchorElUser(null);
 		console.log(e)
+		if (e === "Logout") {
+			logout()
+		}
 	};
 
 	return(
 		<>
-			{user.auth ?
+			{user.jwt ?
 				<Box sx={{ flexGrow: 0 }}>
 					<Tooltip title="Open settings">
 						<IconButton onClick={handleOpenUserMenu} sx={{ p: 0 }}>

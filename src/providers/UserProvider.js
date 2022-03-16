@@ -1,21 +1,30 @@
-import { createContext, useState } from "react";
+import { createContext, useEffect, useState } from "react";
+import { useCookies } from "react-cookie";
 
 export const UserContext = createContext({auth: false})
 
 export default function UserProvider ({children})  {
-	const [user, setUser] = useState({name: "", auth: false})
+	const [user, setUser] = useState({jwt: null})
+	const [cookies, setCookie, removeCookie] = useCookies(["ec_jwt"]);
+	useEffect(() => {
+		if (cookies?.ec_jwt) {
+			setUser(() => ({
+				jwt: cookies?.ec_jwt
+			}))
+		}
+	}, [])
 
-	const login = (name) => {
+	const login = (jwt) => {
+		setCookie("ec_jwt", jwt)
 		setUser(() => ({
-			name: name,
-			auth: true
+			jwt: jwt
 		}))
 	}
 
 	const logout = () => {
+		removeCookie("ec_jwt")
 		setUser(() => ({
-		  name: "",
-		  auth: false,
+			jwt: null
 		}));
 	  };
 
