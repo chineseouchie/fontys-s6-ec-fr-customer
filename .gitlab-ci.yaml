@@ -1,0 +1,16 @@
+stages:
+  - build
+  - test
+  - deploy
+
+variables:
+  PROJECT: ci-ec-fr-customer
+
+
+reactDeploy:
+  stage: deploy
+  script:
+    - docker container stop $(docker container ls --filter label=$PROJECT -aq)
+    - docker container prune --filter label=$PROJECT -f
+    - docker build -t $PROJECT:latest .
+    - docker run -d -l label=$PROJECT -p 80:80 $PROJECT:latest

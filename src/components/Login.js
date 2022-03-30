@@ -22,26 +22,34 @@ export default function Login() {
 		const email = e.target.email.value
 		const password = e.target.password.value
 
-		const res = await fetch("http://localhost:3001/api/v1/login", {
-			method: "POST",
-			headers: {
-				"content-type": "application/json"
-			},
-			body: JSON.stringify({email, password})
-		})
-		const result = await res.json()
-
-		if (res.status === 200) {
-			enqueueSnackbar(`Login success`, {
-				variant: "success",
-				autoHideDuration: 2500,
-			});
-			login(result.data.jwt)
-			console.log(result)
-			console.log(result.data.jwt)
-			navigate("/")
-		} else {
-			enqueueSnackbar(`${result.message}`, {
+		try {
+			const res = await fetch("http://localhost:3001/api/v1/login", {
+				method: "POST",
+				headers: {
+					"content-type": "application/json"
+				},
+				body: JSON.stringify({email, password})
+			})
+			const result = await res.json()
+	
+			if (res.status === 200) {
+				enqueueSnackbar(`Login success`, {
+					variant: "success",
+					autoHideDuration: 2500,
+				});
+				login(result.data.jwt)
+				console.log(result)
+				console.log(result.data.jwt)
+				navigate("/")
+			} else {
+				enqueueSnackbar(`${result.message}`, {
+					variant: "error",
+					autoHideDuration: 2500,
+				});
+			}
+		} catch (e) {
+			console.log(e);
+			enqueueSnackbar(`Something went wrong. Try again later`, {
 				variant: "error",
 				autoHideDuration: 2500,
 			});
