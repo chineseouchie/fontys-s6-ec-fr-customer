@@ -23,7 +23,7 @@ export default function Login() {
 		const password = e.target.password.value
 
 		try {
-			const res = await fetch("http://localhost:3001/api/v1/auth/login", {
+			const res = await fetch("http://192.168.44.27:30769/api/v1/auth/login", {
 				method: "POST",
 				headers: {
 					"content-type": "application/json"
