@@ -1,15 +1,7 @@
-apiVersion: v1
-kind: Namespace
-metadata:
-  name: customer-frontend
-
----
-
 apiVersion: apps/v1
 kind: Deployment
 metadata:
   name: ec-fr-customer
-  namespace: customer-frontend
 spec:
   selector:
     matchLabels:
@@ -20,7 +12,6 @@ spec:
       labels:
         app: ec-fr-customer
     spec:
-      hostNetwork: true
       containers:
       - name: ec-fr-customer
         image: joeyfontys/ec-fr-customer
