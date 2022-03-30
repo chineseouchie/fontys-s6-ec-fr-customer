@@ -16,7 +16,7 @@ function App() {
 					<Routes>
 						<Route path="/" element={
 							<>
-								rootasd
+								root
 							</>} />
 						<Route path="/register" element={user.jwt ? <Login/> : <Register/>} />
 						<Route path="/login" element={<Login/>} />
