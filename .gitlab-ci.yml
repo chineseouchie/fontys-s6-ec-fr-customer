@@ -3,22 +3,16 @@ stages:
   - test
   - deploy
 
-deployDocker:
-  stage: deploy
-  before_script:
-    - docker login -u $CI_REGISTRY_USER -p "$CI_REGISTRY_PASSWORD" $CI_REGISTRY
-  script:
-    - docker build -t "$CI_REGISTRY_IMAGE:$CI_COMMIT_SHA" -t $CI_REGISTRY_IMAGE:latest .
-    - docker push "$CI_REGISTRY_IMAGE:$CI_COMMIT_SHA"
-    - docker push "$CI_REGISTRY_IMAGE:latest"
-    - docker rmi "$CI_REGISTRY_IMAGE:$CI_COMMIT_SHA"
-  after_script:
-    - docker logout
+variables:
+  PROJECT: ci-ec-fr-customer
 
-deployK8s:
+
+reactDeploy:
   stage: deploy
+  # only:
+  #     - production
   script:
-    - microk8s kubectl apply -f ./k8s/ec-fr-customer-deployment.yaml
-    - microk8s kubectl apply -f ./k8s/ec-fr-customer-service.yaml
-    - microk8s kubectl rollout restart deployment ec-fr-customer -n customer-frontend
-  needs: ["deployDocker"]
+    - docker container stop $(docker container ls --filter ancestor=$PROJECT -aq) || echo true
+    - docker container prune --filter label=$PROJECT -f
+    - docker build -t $PROJECT:latest .
+    - docker run -d -l label=$PROJECT -p 80:80 $PROJECT:latest
