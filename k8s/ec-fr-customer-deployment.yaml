@@ -14,7 +14,7 @@ spec:
     spec:
       containers:
       - name: ec-fr-customer
-        image: joeyfontys/-ec-fr-customer
+        image: joeyfontys/ec-fr-customer
         ports:
         - containerPort: 80
       restartPolicy: Always
