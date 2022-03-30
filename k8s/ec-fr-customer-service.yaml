@@ -10,5 +10,3 @@ spec:
       targetPort: 80
   selector:
     app: ec-fr-customer
-  status:
-    loadBalancer: {}
