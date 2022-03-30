@@ -4,6 +4,7 @@ metadata:
   name: ec-fr-customer
   namespace: customer-frontend
 spec:
+  type: LoadBalancer
   ports:
     - protocol: TCP
       port: 80
