@@ -1,0 +1,20 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: ec-fr-customer
+spec:
+  selector:
+    matchLabels:
+      app: ec-fr-customer
+  replicas: 1
+  template:
+    metadata:
+      labels:
+        app: ec-fr-customer
+    spec:
+      containers:
+      - name: ec-fr-customer
+        image: joeyfontys/s6-ec-fr-customer
+        ports:
+        - containerPort: 80
+      restartPolicy: Always
