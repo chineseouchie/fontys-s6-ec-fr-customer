@@ -22,7 +22,7 @@ export default function Register() {
 			return
 		}
 
-		const res = await fetch("http://localhost:3001/api/v1/register", {
+		const res = await fetch("http://localhost:3001/api/v1/auth/register", {
 			method: "POST",
 			headers: {
 				"Content-Type": "application/json"
