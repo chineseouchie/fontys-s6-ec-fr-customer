@@ -1,10 +1,7 @@
 apiVersion: v1
 kind: Namespace
 metadata:
-  creationTimestamp: null
   name: customer-frontend
-spec: {}
-status: {}
 
 ---
 
@@ -29,4 +26,18 @@ spec:
         image: joeyfontys/ec-fr-customer
         ports:
         - containerPort: 80
-      restartPolicy: Always
+        livenessProbe:
+          httpGet:
+            path: /index.html
+            port: 80
+          initialDelaySeconds: 15
+          timeoutSeconds: 2
+          periodSeconds: 5
+          failureThreshold: 1
+        readinessProbe:
+          httpGet:
+            path: /index.html
+            port: 80
+          initialDelaySeconds: 15
+          periodSeconds: 5
+          failureThreshold: 1
