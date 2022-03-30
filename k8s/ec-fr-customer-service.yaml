@@ -4,10 +4,11 @@ metadata:
   name: ec-fr-customer
   namespace: customer-frontend
 spec:
-  type: LoadBalancer
   ports:
     - protocol: TCP
       port: 80
       targetPort: 80
+      nodePort: 30080
+  type: LoadBalancer
   selector:
     app: ec-fr-customer
