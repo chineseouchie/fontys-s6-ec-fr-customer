@@ -1,7 +1,16 @@
+apiVersion: v1
+kind: Namespace
+metadata:
+  creationTimestamp: null
+  name: customer-frontend
+spec: {}
+status: {}
+
 apiVersion: apps/v1
 kind: Deployment
 metadata:
   name: ec-fr-customer
+  namespace: customer-frontend
 spec:
   selector:
     matchLabels:
