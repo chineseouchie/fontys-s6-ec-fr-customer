@@ -9,8 +9,8 @@ variables:
 
 reactDeploy:
   stage: deploy
-  only:
-      - production
+  # only:
+  #     - production
   script:
     - docker container stop $(docker container ls --filter ancestor=$PROJECT -aq) || echo true
     - docker container prune --filter label=$PROJECT -f
