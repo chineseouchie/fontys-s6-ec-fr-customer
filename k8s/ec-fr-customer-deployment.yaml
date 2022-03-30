@@ -23,6 +23,7 @@ spec:
       labels:
         app: ec-fr-customer
     spec:
+      hostNetwork: true
       containers:
       - name: ec-fr-customer
         image: joeyfontys/ec-fr-customer
