@@ -20,4 +20,6 @@ spec:
         env:
           - name: REACT_APP_API_HOST
             value: ec-auth-deployment
+          - name: REACT_APP_API_HOT
+            value: ec-auth
       restartPolicy: Always
