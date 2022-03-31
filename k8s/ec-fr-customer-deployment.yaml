@@ -17,4 +17,7 @@ spec:
         image: joeyfontys/ec-fr-customer
         ports:
         - containerPort: 80
+        env:
+          - name: REACT_APP_API_HOST
+            value: ec-auth
       restartPolicy: Always

@@ -3,8 +3,9 @@ import { useSnackbar } from "notistack";
 import { useContext, useEffect } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import { UserContext } from "../providers/UserProvider";
-
+const {REACT_APP_API_HOST} = process.env
 export default function Login() {
+	console.log(REACT_APP_API_HOST)
 	const { user, login } = useContext(UserContext)
 	const navigate = useNavigate()
 	const { enqueueSnackbar } = useSnackbar();
@@ -23,7 +24,7 @@ export default function Login() {
 		const password = e.target.password.value
 
 		try {
-			const res = await fetch("http://192.168.44.27:30769/api/v1/auth/login", {
+			const res = await fetch(`${REACT_APP_API_HOST}/api/v1/auth/login`, {
 				method: "POST",
 				headers: {
 					"content-type": "application/json"
