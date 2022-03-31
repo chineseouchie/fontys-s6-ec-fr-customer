@@ -4,8 +4,9 @@ import { useContext, useEffect } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import { UserContext } from "../providers/UserProvider";
 import env from "react-dotenv";
+
 export default function Login() {
-	console.log(env.API_HOST)
+	console.log(window.env.API_HOST)
 	console.log("test")
 	console.log(env.API_HOT)
 	const { user, login } = useContext(UserContext)
@@ -24,7 +25,7 @@ export default function Login() {
 
 		const email = e.target.email.value
 		const password = e.target.password.value
-		const url = `${env.API_HOST}/api/v1/auth/login`
+		const url = `http://ec-auth/api/v1/auth/login`
 		try {
 			const res = await fetch(url, {
 				method: "POST",
