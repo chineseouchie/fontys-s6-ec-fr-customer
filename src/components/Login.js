@@ -6,6 +6,7 @@ import { UserContext } from "../providers/UserProvider";
 const {REACT_APP_API_HOST} = process.env
 export default function Login() {
 	console.log(REACT_APP_API_HOST)
+	console.log("test")
 	const { user, login } = useContext(UserContext)
 	const navigate = useNavigate()
 	const { enqueueSnackbar } = useSnackbar();
