@@ -2,6 +2,8 @@ apiVersion: apps/v1
 kind: Deployment
 metadata:
   name: ec-fr-customer
+  labels:
+    app: ec-fr-customer
 spec:
   selector:
     matchLabels:
