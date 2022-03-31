@@ -16,4 +16,4 @@ spec:
       - name: ec-fr-customer
         image: joeyfontys/ec-fr-customer
         ports:
-        - containerPort: 3000
+        - containerPort: 80

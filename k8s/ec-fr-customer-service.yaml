@@ -6,7 +6,7 @@ spec:
   ports:
     - protocol: TCP
       port: 3000
-      targetPort: 3000
+      targetPort: 80
   type: ClusterIP
   selector:
     app: ec-fr-customer
