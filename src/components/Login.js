@@ -24,9 +24,9 @@ export default function Login() {
 
 		const email = e.target.email.value
 		const password = e.target.password.value
-
+		const url = `${REACT_APP_API_HOST}/api/v1/auth/login`
 		try {
-			const res = await fetch(`${REACT_APP_API_HOST}/api/v1/auth/login`, {
+			const res = await fetch(url, {
 				method: "POST",
 				headers: {
 					"content-type": "application/json"
