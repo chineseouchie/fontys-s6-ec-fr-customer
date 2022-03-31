@@ -25,7 +25,7 @@ export default function Login() {
 
 		const email = e.target.email.value
 		const password = e.target.password.value
-		const url = `http://ec-auth/api/v1/auth/login`
+		const url = `/api/v1/auth/login`
 		try {
 			const res = await fetch(url, {
 				method: "POST",
