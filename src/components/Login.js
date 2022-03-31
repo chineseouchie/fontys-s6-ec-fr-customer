@@ -3,12 +3,8 @@ import { useSnackbar } from "notistack";
 import { useContext, useEffect } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import { UserContext } from "../providers/UserProvider";
-import env from "react-dotenv";
 
 export default function Login() {
-	console.log(window.env.API_HOST)
-	console.log("test")
-	console.log(env.API_HOT)
 	const { user, login } = useContext(UserContext)
 	const navigate = useNavigate()
 	const { enqueueSnackbar } = useSnackbar();
