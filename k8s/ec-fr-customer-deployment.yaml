@@ -16,10 +16,4 @@ spec:
       - name: ec-fr-customer
         image: joeyfontys/ec-fr-customer
         ports:
-        - containerPort: 80
-        env:
-          - name: API_HOST
-            value: ec-auth-deployment
-          - name: API_HOT
-            value: "test"
-      restartPolicy: Always
+        - containerPort: 3000
