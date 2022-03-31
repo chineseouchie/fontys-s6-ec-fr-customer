@@ -19,5 +19,5 @@ spec:
         - containerPort: 80
         env:
           - name: REACT_APP_API_HOST
-            value: ec-auth
+            value: ec-auth-deployment
       restartPolicy: Always
