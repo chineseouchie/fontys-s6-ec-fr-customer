@@ -25,4 +25,6 @@ deployK8s:
     - microk8s kubectl apply -f ./k8s/ec-fr-customer-deployment.yaml
     - microk8s kubectl apply -f ./k8s/ec-fr-customer-service.yaml
     - microk8s kubectl rollout restart deployment ec-fr-customer
+    - docker container prune -f
+    - docker image prune -f
   needs: ["deployDocker"]
