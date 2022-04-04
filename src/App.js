@@ -7,19 +7,19 @@ import Nav from "./components/Nav";
 import { UserContext } from "./providers/UserProvider";
 
 function App() {
-	const { user} = useContext(UserContext)
+	const { user } = useContext(UserContext)
 	return (
 		<div className="App">
 			<Router>
-				<Nav/>
+				<Nav />
 				<main>
 					<Routes>
 						<Route path="/" element={
 							<>
-								Ecommerce
+								Ecommerce test
 							</>} />
-						<Route path="/register" element={user.jwt ? <Login/> : <Register/>} />
-						<Route path="/login" element={<Login/>} />
+						<Route path="/register" element={user.jwt ? <Login /> : <Register />} />
+						<Route path="/login" element={<Login />} />
 					</Routes>
 				</main>
 			</Router>
