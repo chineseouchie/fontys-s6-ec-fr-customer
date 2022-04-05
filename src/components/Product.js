@@ -3,7 +3,8 @@ import { useGetFetch } from "../hooks/useGetFetch"
 
 export default function Products() {
 	let params = useParams();
-	const {result, error, loading} = useGetFetch(`http://localhost:3002/api/v1/product/${params.uuid}`)
+	const PRODUCT_URL = process.env.REACT_APP_PRODUCT_URL
+	const {result, error, loading} = useGetFetch(`${PRODUCT_URL}/${params.uuid}`)
 
 	if (loading) {
 		return(

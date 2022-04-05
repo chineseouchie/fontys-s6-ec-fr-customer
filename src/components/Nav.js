@@ -32,13 +32,15 @@ export default function Nav() {
 		<AppBar position="static">
 			<Container maxWidth="xl">
 				<Toolbar disableGutters>
-					<Typography
-						variant="h6"
-						noWrap
-						component="div"
-						sx={{ mr: 2, display: { xs: "none", md: "flex" } }} >
+					<Link to="/">
+						<Typography
+							variant="h6"
+							noWrap
+							component="div"
+							sx={{ mr: 2, display: { xs: "none", md: "flex" } }} >
 						LOGO
-					</Typography>
+						</Typography>
+					</Link>
 
 					<Box sx={{ flexGrow: 1, display: { xs: "flex", md: "none" } }}>
 						<IconButton
@@ -53,20 +55,12 @@ export default function Nav() {
 						<Menu
 							id="menu-appbar"
 							anchorEl={anchorElNav}
-							anchorOrigin={{
-								vertical: "bottom",
-								horizontal: "left",
-							}}
+							anchorOrigin={{vertical: "bottom",horizontal: "left"}}
 							keepMounted
-							transformOrigin={{
-								vertical: "top",
-								horizontal: "left",
-							}}
+							transformOrigin={{vertical: "top",horizontal: "left"}}
 							open={Boolean(anchorElNav)}
 							onClose={handleCloseNavMenu}
-							sx={{
-								display: { xs: "block", md: "none" },
-							}} >
+							sx={{display: { xs: "block", md: "none" }}} >
 							{pages.map((page) => (
 								<Link key={page.title} to={page.link}>
 									<MenuItem onClick={handleCloseNavMenu}>
@@ -76,13 +70,15 @@ export default function Nav() {
 							))}
 						</Menu>
 					</Box>
-					<Typography
-						variant="h6"
-						noWrap
-						component="div"
-						sx={{ flexGrow: 1, display: { xs: "flex", md: "none" } }} >
-						LOGO
-					</Typography>
+					<Link to="/">
+						<Typography
+							variant="h6"
+							noWrap
+							component="div"
+							sx={{ flexGrow: 1, display: { xs: "flex", md: "none" } }} >
+							LOGO
+						</Typography>
+					</Link>
 					<Box sx={{ flexGrow: 1, display: { xs: "none", md: "flex" } }}>
 						{pages.map((page) => (
 							<Link key={page.title} to={page.link}>

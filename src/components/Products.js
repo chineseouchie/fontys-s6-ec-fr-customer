@@ -2,7 +2,9 @@ import { Link } from "react-router-dom";
 import { useGetFetch } from "../hooks/useGetFetch"
 
 export default function Products() {
-	const {result, error, loading} = useGetFetch("http://localhost:3002/api/v1/product")
+	const PRODUCT_URL = process.env.REACT_APP_PRODUCT_URL
+	console.log(PRODUCT_URL)
+	const {result, error, loading} = useGetFetch(PRODUCT_URL)
 
 	if (loading) {
 		return(
