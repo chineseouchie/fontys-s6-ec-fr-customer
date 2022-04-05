@@ -12,8 +12,10 @@ import {
 import MenuIcon from "@mui/icons-material/Menu"
 import { useState } from "react"
 import AccountNav from "./AccountNav"
+import { Link } from "react-router-dom"
+import Cart from "./Cart"
 
-const pages = ["Products", "Categories"]
+const pages = [{title:"Products", link:"products"}, {title:"Categories", link:"categories"}]
 
 export default function Nav() {
 	
@@ -30,13 +32,15 @@ export default function Nav() {
 		<AppBar position="static">
 			<Container maxWidth="xl">
 				<Toolbar disableGutters>
-					<Typography
-						variant="h6"
-						noWrap
-						component="div"
-						sx={{ mr: 2, display: { xs: "none", md: "flex" } }} >
+					<Link to="/">
+						<Typography
+							variant="h6"
+							noWrap
+							component="div"
+							sx={{ mr: 2, display: { xs: "none", md: "flex" } }} >
 						LOGO
-					</Typography>
+						</Typography>
+					</Link>
 
 					<Box sx={{ flexGrow: 1, display: { xs: "flex", md: "none" } }}>
 						<IconButton
@@ -51,48 +55,45 @@ export default function Nav() {
 						<Menu
 							id="menu-appbar"
 							anchorEl={anchorElNav}
-							anchorOrigin={{
-								vertical: "bottom",
-								horizontal: "left",
-							}}
+							anchorOrigin={{vertical: "bottom",horizontal: "left"}}
 							keepMounted
-							transformOrigin={{
-								vertical: "top",
-								horizontal: "left",
-							}}
+							transformOrigin={{vertical: "top",horizontal: "left"}}
 							open={Boolean(anchorElNav)}
 							onClose={handleCloseNavMenu}
-							sx={{
-								display: { xs: "block", md: "none" },
-							}} >
+							sx={{display: { xs: "block", md: "none" }}} >
 							{pages.map((page) => (
-								<MenuItem key={page} onClick={handleCloseNavMenu}>
-									<Typography textAlign="center">{page}</Typography>
-								</MenuItem>
+								<Link key={page.title} to={page.link}>
+									<MenuItem onClick={handleCloseNavMenu}>
+										<Typography textAlign="center">{page.title}</Typography>
+									</MenuItem>
+								</Link>
 							))}
 						</Menu>
 					</Box>
-					<Typography
-						variant="h6"
-						noWrap
-						component="div"
-						sx={{ flexGrow: 1, display: { xs: "flex", md: "none" } }} >
-						LOGO
-					</Typography>
+					<Link to="/">
+						<Typography
+							variant="h6"
+							noWrap
+							component="div"
+							sx={{ flexGrow: 1, display: { xs: "flex", md: "none" } }} >
+							LOGO
+						</Typography>
+					</Link>
 					<Box sx={{ flexGrow: 1, display: { xs: "none", md: "flex" } }}>
 						{pages.map((page) => (
-							<Button
-								key={page}
-								onClick={handleCloseNavMenu}
-								sx={{ my: 2, color: "white", display: "block" }} >
-								{page}
-							</Button>
+							<Link key={page.title} to={page.link}>
+								<Button
+									onClick={handleCloseNavMenu}
+									sx={{ my: 2, color: "white", display: "block" }} >
+									{page.title}
+								</Button>
+							</Link>
 						))}
 					</Box>
 
 					{/* ACCOUNT */}
 					<AccountNav/>
-
+					<Cart />
 				</Toolbar>
 			</Container>
 		</AppBar>

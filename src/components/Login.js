@@ -8,6 +8,7 @@ export default function Login() {
 	const { user, login } = useContext(UserContext)
 	const navigate = useNavigate()
 	const { enqueueSnackbar } = useSnackbar();
+	const AUTH_URL = process.env.REACT_APP_AUTH_URL
 
 	useEffect(() => {
 		if (user?.jwt) {
@@ -21,9 +22,8 @@ export default function Login() {
 
 		const email = e.target.email.value
 		const password = e.target.password.value
-		const url = `/api/v1/auth/login`
 		try {
-			const res = await fetch(url, {
+			const res = await fetch(`${AUTH_URL}/login`, {
 				method: "POST",
 				headers: {
 					"content-type": "application/json"

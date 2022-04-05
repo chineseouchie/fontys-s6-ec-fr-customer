@@ -5,7 +5,8 @@ import { useSnackbar } from "notistack";
 export default function Register() {
 	const navigate = useNavigate()
 	const { enqueueSnackbar } = useSnackbar();
-
+	const AUTH_URL = process.env.REACT_APP_AUTH_URL
+	
 	const handleSubmit = async (e) => {
 		e.preventDefault()
 
@@ -22,7 +23,7 @@ export default function Register() {
 			return
 		}
 
-		const res = await fetch("/api/v1/auth/register", {
+		const res = await fetch(`${AUTH_URL}/register`, {
 			method: "POST",
 			headers: {
 				"Content-Type": "application/json"
