@@ -12,8 +12,10 @@ import {
 import MenuIcon from "@mui/icons-material/Menu"
 import { useState } from "react"
 import AccountNav from "./AccountNav"
+import { Link } from "react-router-dom"
+import Cart from "./Cart"
 
-const pages = ["Products", "Categories"]
+const pages = [{title:"Products", link:"products"}, {title:"Categories", link:"categories"}]
 
 export default function Nav() {
 	
@@ -66,9 +68,11 @@ export default function Nav() {
 								display: { xs: "block", md: "none" },
 							}} >
 							{pages.map((page) => (
-								<MenuItem key={page} onClick={handleCloseNavMenu}>
-									<Typography textAlign="center">{page}</Typography>
-								</MenuItem>
+								<Link key={page.title} to={page.link}>
+									<MenuItem onClick={handleCloseNavMenu}>
+										<Typography textAlign="center">{page.title}</Typography>
+									</MenuItem>
+								</Link>
 							))}
 						</Menu>
 					</Box>
@@ -81,18 +85,19 @@ export default function Nav() {
 					</Typography>
 					<Box sx={{ flexGrow: 1, display: { xs: "none", md: "flex" } }}>
 						{pages.map((page) => (
-							<Button
-								key={page}
-								onClick={handleCloseNavMenu}
-								sx={{ my: 2, color: "white", display: "block" }} >
-								{page}
-							</Button>
+							<Link key={page.title} to={page.link}>
+								<Button
+									onClick={handleCloseNavMenu}
+									sx={{ my: 2, color: "white", display: "block" }} >
+									{page.title}
+								</Button>
+							</Link>
 						))}
 					</Box>
 
 					{/* ACCOUNT */}
 					<AccountNav/>
-
+					<Cart />
 				</Toolbar>
 			</Container>
 		</AppBar>

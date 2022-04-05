@@ -4,6 +4,8 @@ import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
 import Register from "./components/Register"
 import Login from "./components/Login";
 import Nav from "./components/Nav";
+import Products from "./components/Products";
+import Product from "./components/Product";
 import { UserContext } from "./providers/UserProvider";
 
 function App() {
@@ -20,6 +22,8 @@ function App() {
 							</>} />
 						<Route path="/register" element={user.jwt ? <Login /> : <Register />} />
 						<Route path="/login" element={<Login />} />
+						<Route path="/products" element={<Products />} />
+						<Route path="/product/:uuid" element={<Product />} />
 					</Routes>
 				</main>
 			</Router>
