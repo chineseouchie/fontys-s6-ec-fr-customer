@@ -1,4 +1,4 @@
-import { useContext } from "react";
+import { useContext, useState } from "react";
 import "./App.css";
 import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
 import Register from "./components/Register"
@@ -8,13 +8,16 @@ import Products from "./components/Products";
 import Product from "./components/Product";
 import { UserContext } from "./providers/UserProvider";
 import Order from "./components/Order";
+import Cart from "./components/Cart";
 
 function App() {
 	const { user } = useContext(UserContext)
+	const [cart, setCart] = useState([])
+
 	return (
 		<div className="App">
 			<Router>
-				<Nav />
+				<Nav/>
 				<main>
 					<Routes>
 						<Route path="/" element={
@@ -26,6 +29,7 @@ function App() {
 						<Route path="/products" element={<Products />} />
 						<Route path="/product/:uuid" element={<Product />} />
 						<Route path="/order" element={user.jwt ? <Order /> : <Login />} />
+						<Route path="/cart" element={<Cart />} />
 					</Routes>
 				</main>
 			</Router>
