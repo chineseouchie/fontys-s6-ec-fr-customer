@@ -38,8 +38,6 @@ export default function Login() {
 					autoHideDuration: 2500,
 				});
 				login(result.data.jwt)
-				console.log(result)
-				console.log(result.data.jwt)
 				navigate("/")
 			} else {
 				enqueueSnackbar(`${result.message}`, {
@@ -61,8 +59,8 @@ export default function Login() {
 			<form onSubmit={handleSubmit} className="register-form">
 				<FormControl>
 					<FormGroup >
-						<TextField label="Email" type="email" name="email" variant="standard" required value="test@example.com"/>
-						<TextField label="Password" type="password" name="password" variant="standard" required value="Testtest1!"/>
+						<TextField label="Email" type="email" name="email" variant="standard" required defaultValue="test@example.com"/>
+						<TextField label="Password" type="password" name="password" variant="standard" required defaultValue="Testtest1!"/>
 					</FormGroup>
 
 					<Button variant="contained" type="submit">
