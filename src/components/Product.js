@@ -8,7 +8,7 @@ export default function Products() {
 	let params = useParams();
 	const PRODUCT_URL = process.env.REACT_APP_PRODUCT_URL
 	const {result, error, loading} = useGetFetch(`${PRODUCT_URL}/${params.uuid}`)
-	const { addItem} = useContext(CartContext)
+	const { addItem } = useContext(CartContext)
 
 	if (loading) {
 		return(
@@ -33,7 +33,7 @@ export default function Products() {
 			<div >
 				{result.data.name} - {result.data.description} - €{result.data.price}
 			</div>
-			<Button variant="contained" onClick={()=>addItem(result.data.product_uuid)}>Add to cart</Button>
+			<Button variant="contained" onClick={()=>addItem(result.data)}>Add to cart</Button>
 		</>
 	)
 }

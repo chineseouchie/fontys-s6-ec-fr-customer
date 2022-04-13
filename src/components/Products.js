@@ -3,7 +3,6 @@ import { useGetFetch } from "../hooks/useGetFetch"
 
 export default function Products() {
 	const PRODUCT_URL = process.env.REACT_APP_PRODUCT_URL
-	console.log(PRODUCT_URL)
 	const {result, error, loading} = useGetFetch(PRODUCT_URL)
 
 	if (loading) {
@@ -21,8 +20,6 @@ export default function Products() {
 			</>
 		)
 	}
-
-	console.log(result);
 
 	return(
 		<>

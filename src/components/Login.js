@@ -61,8 +61,8 @@ export default function Login() {
 			<form onSubmit={handleSubmit} className="register-form">
 				<FormControl>
 					<FormGroup >
-						<TextField label="Email" type="email" name="email" variant="standard" required/>
-						<TextField label="Password" type="password" name="password" variant="standard" required/>
+						<TextField label="Email" type="email" name="email" variant="standard" required value="test@example.com"/>
+						<TextField label="Password" type="password" name="password" variant="standard" required value="Testtest1!"/>
 					</FormGroup>
 
 					<Button variant="contained" type="submit">
