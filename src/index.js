@@ -6,6 +6,7 @@ import reportWebVitals from "./reportWebVitals";
 import UserProvider from "./providers/UserProvider"
 import { SnackbarProvider } from "notistack";
 import Slide from "@mui/material/Slide";
+import CartProvider from "./providers/CartProvider";
 
 ReactDOM.render(
 	<React.StrictMode>
@@ -17,7 +18,9 @@ ReactDOM.render(
 			maxSnack={1}
 			TransitionComponent={Slide}>
 			<UserProvider>
-				<App />
+				<CartProvider>
+					<App />
+				</CartProvider>
 			</UserProvider>
 		</SnackbarProvider>
 	</React.StrictMode>,

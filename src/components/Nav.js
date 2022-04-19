@@ -13,7 +13,7 @@ import MenuIcon from "@mui/icons-material/Menu"
 import { useState } from "react"
 import AccountNav from "./AccountNav"
 import { Link } from "react-router-dom"
-import Cart from "./Cart"
+import CartMenu from "./CartMenu"
 
 const pages = [{title:"Products", link:"products"}, {title:"Categories", link:"categories"}]
 
@@ -93,7 +93,7 @@ export default function Nav() {
 
 					{/* ACCOUNT */}
 					<AccountNav/>
-					<Cart />
+					<CartMenu />
 				</Toolbar>
 			</Container>
 		</AppBar>
