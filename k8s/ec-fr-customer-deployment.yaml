@@ -19,9 +19,11 @@ spec:
         image: joeyfontys/ec-fr-customer
         ports:
         - containerPort: 80
-        # resources:
-        #   limits:
-        #     cpu: "100m"
-        #   requests:
-        #     cpu: "10m"
+        resources:
+          requests:
+            cpu: 64m
+            memory: 100Mi
+          limits:
+            cpu: 400m
+            memory: 400Mi
 
