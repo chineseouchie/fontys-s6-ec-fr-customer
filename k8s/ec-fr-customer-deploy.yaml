@@ -1,0 +1,44 @@
+
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: ec-fr-customer
+  labels:
+    app: ec-fr-customer
+spec:
+  selector:
+    matchLabels:
+      app: ec-fr-customer
+  replicas: 1
+  template:
+    metadata:
+      labels:
+        app: ec-fr-customer
+    spec:
+      containers:
+      - name: ec-fr-customer
+        image: joeyfontys/ec-fr-customer
+        ports:
+        - containerPort: 80
+        resources:
+          requests:
+            cpu: 64m
+            memory: 100Mi
+          limits:
+            cpu: 400m
+            memory: 400Mi
+
+---
+
+apiVersion: v1
+kind: Service
+metadata:
+  name: ec-fr-customer
+spec:
+  ports:
+    - protocol: TCP
+      port: 3000
+      targetPort: 80
+  type: ClusterIP
+  selector:
+    app: ec-fr-customer
