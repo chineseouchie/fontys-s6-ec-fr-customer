@@ -1,0 +1,6 @@
+projectKey=ec-fr-customer
+serverUrl=http://localhost:9000
+serverVersion=9.4.0.54424
+dashboardUrl=http://localhost:9000/dashboard?id=ec-fr-customer
+ceTaskId=AYBHGeyk2g1-4cE9EW1_
+ceTaskUrl=http://localhost:9000/api/ce/task?id=AYBHGeyk2g1-4cE9EW1_
