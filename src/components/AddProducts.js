@@ -1,10 +1,8 @@
 import { Button, TextField } from "@mui/material";
 import { useContext, useState } from "react";
-import { useParams } from "react-router-dom";
 import { UserContext } from "../providers/UserProvider";
 
 export default function AddProducts() {
-	let params = useParams();
 	const PRODUCT_URL = process.env.REACT_APP_PRODUCT_URL
 	const { user } = useContext(UserContext)
 
