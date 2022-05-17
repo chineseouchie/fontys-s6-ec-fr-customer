@@ -13,7 +13,7 @@ export default function AddProducts() {
 
 	// console.log(result);
 	const onAdd = async () => {
-		const res = await fetch(`${PRODUCT_URL}`, {
+		const res = await fetch(`${PRODUCT_URL}/add`, {
 			method: "POST",
 			headers: {
 				"Content-Type": "application/json",
