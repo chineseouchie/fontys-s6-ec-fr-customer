@@ -15,7 +15,7 @@ import AccountNav from "./AccountNav"
 import { Link } from "react-router-dom"
 import CartMenu from "./CartMenu"
 
-const pages = [{title:"Products", link:"products"}, {title:"Categories", link:"categories"}]
+const pages = [{title:"Products", link:"products"}, {title:"Categories", link:"categories"}, {title:"Product add", link:"products/add"}]
 
 export default function Nav() {
 	
