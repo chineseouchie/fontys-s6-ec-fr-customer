@@ -1,16 +1,15 @@
 import { Box, Button } from "@mui/material"
 import { useSnackbar } from "notistack"
 import { useContext } from "react"
+import useLocalStorage from "../hooks/useLocalStorage"
 import { CartContext } from "../providers/CartProvider"
-import { UserContext } from "../providers/UserProvider"
 
 export default function Cart() {
 	const ORDER_URL = process.env.REACT_APP_ORDER_URL
 	const { cart, removeItem } = useContext(CartContext)
-	const { user } = useContext(UserContext)
+	const [jwt] = useLocalStorage("ec-jwt");
 	const { enqueueSnackbar } = useSnackbar();
 	console.log(cart)
-	console.log(user)
 
 	const onOrder = async () => {
 		const orderProducts = cart.map(e => ({product_uuid: e.product_uuid, quantity: e.quantity}))
@@ -20,7 +19,7 @@ export default function Cart() {
 				method: "POST",
 				headers: {
 					"Content-Type": "application/json",
-					"Authorization": `jwt ${user.jwt}`
+					"Authorization": `jwt ${jwt}`
 				},
 				body: JSON.stringify({"orderProducts": orderProducts})
 			})
