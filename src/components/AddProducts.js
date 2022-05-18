@@ -1,10 +1,10 @@
 import { Button, TextField } from "@mui/material";
-import { useState } from "react";
-import useLocalStorage from "../hooks/useLocalStorage";
+import { useContext, useState } from "react";
+import { UserContext } from "../providers/UserProvider";
 
 export default function AddProducts() {
 	const PRODUCT_URL = process.env.REACT_APP_PRODUCT_URL
-	const [jwt] = useLocalStorage("ec-jwt");
+	const { user } = useContext(UserContext)
 	const [name, setName] = useState("")
 	const [desc, setDesc] = useState("")
 	const [price, setPrice] = useState()
@@ -14,7 +14,7 @@ export default function AddProducts() {
 			method: "POST",
 			headers: {
 				"Content-Type": "application/json",
-				"Authorization": `jwt ${jwt}`
+				"Authorization": `jwt ${user.jwt}`
 			},
 			body: JSON.stringify({
 				name: name,

@@ -16,11 +16,11 @@ export default function UserProvider ({children})  {
 	// eslint-disable-next-line react-hooks/exhaustive-deps
 	}, [])
 
-	const login = (jwt) => {
-		setJwt(jwt)
+	const login = (token) => {
+		setJwt(token)
 		setUser(() => ({
-			jwt: jwt
-		}))
+			jwt: token
+		}));
 	}
 
 	const logout = () => {
