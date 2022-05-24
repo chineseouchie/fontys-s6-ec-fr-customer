@@ -29,6 +29,18 @@ export default function AddProducts() {
 
 		console.log(result)
 	}
+	
+	const onSeed = async () => {
+		const res = await fetch(`${PRODUCT_URL}/seed`, {
+			method: "POST",
+			headers: {
+				"Content-Type": "application/json",
+				"Authorization": `jwt ${user.jwt}`
+			}
+		})
+		const result = await res.json()
+		console.log(result)
+	}
 
 	return(
 		<>
@@ -37,6 +49,7 @@ export default function AddProducts() {
 			<TextField id="outlined-basic" label="Price" variant="outlined" type="number" onChange={(e) => {setPrice(e.target.value)}}/>
 			<TextField id="outlined-basic" label="URL" variant="outlined" onChange={(e) => {setUrl(e.target.value)}}/>
 			<Button variant="contained" onClick={onAdd}>Add product</Button>
+			<Button variant="contained" onClick={onSeed}>Seed database</Button>
 		</>
 	)
 }

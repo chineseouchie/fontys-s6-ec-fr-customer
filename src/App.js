@@ -10,6 +10,7 @@ import { UserContext } from "./providers/UserProvider";
 import Order from "./components/Order/Order";
 import Cart from "./components/Cart/Cart";
 import AddProducts from "./components/Product/AddProducts";
+import Admin from "./components/Admin/Admin";
 
 function App() {
 	const { user } = useContext(UserContext)
@@ -20,17 +21,17 @@ function App() {
 				<Nav/>
 				<main>
 					<Routes>
-						<Route path="/" element={
-							<>
-								Ecommerce
-							</>} />
-						<Route path="/register" element={user.jwt ? <Login /> : <Register />} />
+						<Route path="/" element={<>Ecommerce</>} />
 						<Route path="/login" element={<Login />} />
 						<Route path="/products" element={<Products />} />
-						<Route path="/products/add" element={<AddProducts />} />
 						<Route path="/product/:uuid" element={<Product />} />
-						<Route path="/order" element={user.jwt ? <Order /> : <Login />} />
 						<Route path="/cart" element={<Cart />} />
+
+						<Route path="/register" element={user.jwt ? <Login /> : <Register />} />
+						<Route path="/order" element={user.jwt ? <Order /> : <Login />} />
+						
+						<Route path="/admin" element={user.isAdmin ? <Admin /> : <Login />} />
+						<Route path="/admin/add-product" element={user.isAdmin ? <AddProducts /> : <Login />} />
 					</Routes>
 				</main>
 			</Router>
