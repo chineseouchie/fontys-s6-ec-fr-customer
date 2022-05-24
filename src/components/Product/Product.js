@@ -1,8 +1,9 @@
-import { Button } from "@mui/material";
+import { Box, Button, Grid, Typography } from "@mui/material";
 import { useContext } from "react";
 import { useParams } from "react-router-dom";
 import { useGetFetch } from "../../hooks/useGetFetch"
 import { CartContext } from "../../providers/CartProvider";
+import AddShoppingCartIcon from "@mui/icons-material/AddShoppingCart";
 
 export default function Products() {
 	let params = useParams();
@@ -11,9 +12,7 @@ export default function Products() {
 	const { addItem } = useContext(CartContext)
 	if (loading) {
 		return(
-			<>
-				Loading...
-			</>
+			<></>
 		)
 	}
 
@@ -25,14 +24,30 @@ export default function Products() {
 		)
 	}
 
-	// console.log(result);
+	console.log(result);
+
+	const product = result.data;
 
 	return(
 		<>
-			<div >
-				{result.data.name} - {result.data.description} - €{result.data.price}
-			</div>
-			<Button variant="contained" onClick={()=>addItem(result.data)}>Add to cart</Button>
+			<Grid container spacing={{ xs: 2, md: 3 }} columns={{ xs: 4, sm: 8, md: 12 }}>
+				<Grid item mt={1} xs={12} sm={4} md={4}>
+					<Box component="img" src={product.image_url} alt={product.name}/>
+				</Grid>
+				<Grid item m="auto" xs={12} sm={4} md={4} >
+					<Typography gutterBottom variant="h5" component="div">
+						{product.name}
+					</Typography>
+					<Typography component="div">
+						{product.description}
+					</Typography>
+					<Typography  component="div">
+						€{product.price}
+					</Typography>
+					<Button variant="contained" onClick={()=>addItem(result.data)}><AddShoppingCartIcon/> Add to cart</Button>
+				</Grid>
+			</Grid>
+			
 		</>
 	)
 }
