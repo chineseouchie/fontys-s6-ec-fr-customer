@@ -9,7 +9,7 @@ import {
 } from "@mui/material";
 import { useContext, useState } from "react";
 import { Link } from "react-router-dom";
-import { UserContext } from "../providers/UserProvider";
+import { UserContext } from "../../providers/UserProvider";
 const settings = ["Account", "Dashboard", "Logout"];
 
 export default function AccountNav() {

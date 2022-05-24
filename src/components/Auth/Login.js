@@ -2,7 +2,7 @@ import { Button, FormControl, FormGroup, TextField } from "@mui/material";
 import { useSnackbar } from "notistack";
 import { useContext, useEffect } from "react";
 import { Link, useNavigate } from "react-router-dom";
-import { UserContext } from "../providers/UserProvider";
+import { UserContext } from "../../providers/UserProvider";
 
 export default function Login() {
 	const { user, login } = useContext(UserContext)

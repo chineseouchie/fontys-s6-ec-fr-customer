@@ -10,15 +10,19 @@ import CartProvider from "./providers/CartProvider";
 import * as Sentry from "@sentry/react";
 import { BrowserTracing } from "@sentry/tracing";
 
-Sentry.init({
-	dsn: "https://8dfece0431454327b10ffa3fd399d06e@o492790.ingest.sentry.io/6395456",
-	integrations: [new BrowserTracing()],
-  
-	// Set tracesSampleRate to 1.0 to capture 100%
-	// of transactions for performance monitoring.
-	// We recommend adjusting this value in production
-	tracesSampleRate: 1.0,
-});
+if (process.env.NODE_ENV === "production") {
+
+	console.log("Running production")
+	Sentry.init({
+		dsn: "https://8dfece0431454327b10ffa3fd399d06e@o492790.ingest.sentry.io/6395456",
+		integrations: [new BrowserTracing()],
+	  
+		// Set tracesSampleRate to 1.0 to capture 100%
+		// of transactions for performance monitoring.
+		// We recommend adjusting this value in production
+		tracesSampleRate: 1.0,
+	});
+}
 
 ReactDOM.render(
 	<React.StrictMode>

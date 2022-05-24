@@ -10,16 +10,44 @@ import {
 	Typography
 } from "@mui/material"
 import MenuIcon from "@mui/icons-material/Menu"
-import { useState } from "react"
+import { useContext, useEffect, useState } from "react"
 import AccountNav from "./AccountNav"
 import { Link } from "react-router-dom"
-import CartMenu from "./CartMenu"
+import CartMenu from "../Cart/CartMenu"
+import { UserContext } from "../../providers/UserProvider"
+import jwtDecode from "jwt-decode"
 
-const pages = [{title:"Products", link:"products"}, {title:"Categories", link:"categories"}, {title:"Product add", link:"products/add"}]
+const pages = [
+	{title:"Products", link:"products", roles: ["CUSTOMER"]},
+	{title:"Categories", link:"categories", roles: ["CUSTOMER"]},
+	{title:"Product add", link:"products/add", roles: ["ADMIN", "PRODUCT_MANAGER"]}
+]
 
 export default function Nav() {
-	
 	const [anchorElNav, setAnchorElNav] = useState(null);
+	const { user } = useContext(UserContext)
+	const [roles, setRoles] = useState([])
+	
+	useEffect(() => {
+		const roles = user.jwt ? jwtDecode(user.jwt).roles : []
+		setRoles(roles)
+		
+	}, [user.jwt])
+	
+	const visiblePages = []
+	pages.forEach(page => {
+		let z = 0
+		page.roles.forEach(role => {
+			if (role === "CUSTOMER" || roles.includes(role)) {
+				z++
+				
+			}
+		})
+		if (z > 0) {
+			visiblePages.push(page)
+		}
+	})
+
 
 	const handleOpenNavMenu = (event) => {
 		setAnchorElNav(event.currentTarget);
@@ -61,7 +89,7 @@ export default function Nav() {
 							open={Boolean(anchorElNav)}
 							onClose={handleCloseNavMenu}
 							sx={{display: { xs: "block", md: "none" }}} >
-							{pages.map((page) => (
+							{visiblePages.map((page) => (
 								<Link key={page.title} to={page.link}>
 									<MenuItem onClick={handleCloseNavMenu}>
 										<Typography textAlign="center">{page.title}</Typography>
@@ -80,7 +108,7 @@ export default function Nav() {
 						</Typography>
 					</Link>
 					<Box sx={{ flexGrow: 1, display: { xs: "none", md: "flex" } }}>
-						{pages.map((page) => (
+						{visiblePages.map((page) => (
 							<Link key={page.title} to={page.link}>
 								<Button
 									onClick={handleCloseNavMenu}

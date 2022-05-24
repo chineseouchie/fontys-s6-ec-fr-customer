@@ -1,15 +1,15 @@
 import { useContext } from "react";
 import "./App.css";
 import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
-import Register from "./components/Register"
-import Login from "./components/Login";
-import Nav from "./components/Nav";
-import Products from "./components/Products";
-import Product from "./components/Product";
+import Register from "./components/Auth/Register"
+import Login from "./components/Auth/Login";
+import Nav from "./components/Nav/Nav";
+import Products from "./components/Product/Products";
+import Product from "./components/Product/Product";
 import { UserContext } from "./providers/UserProvider";
-import Order from "./components/Order";
-import Cart from "./components/Cart";
-import AddProducts from "./components/AddProducts";
+import Order from "./components/Order/Order";
+import Cart from "./components/Cart/Cart";
+import AddProducts from "./components/Product/AddProducts";
 
 function App() {
 	const { user } = useContext(UserContext)

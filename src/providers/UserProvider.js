@@ -1,32 +1,34 @@
 import { createContext, useEffect, useState } from "react";
-import { useCookies } from "react-cookie";
+import useLocalStorage from "../hooks/useLocalStorage";
 
 export const UserContext = createContext({auth: false})
 
 export default function UserProvider ({children})  {
 	const [user, setUser] = useState({jwt: null})
-	const [cookies, setCookie, removeCookie] = useCookies(["ec_jwt"]);
+	const [jwt, setJwt] = useLocalStorage("ec-jwt");
+
 	useEffect(() => {
-		if (cookies?.ec_jwt) {
+		if (jwt) {
 			setUser(() => ({
-				jwt: cookies?.ec_jwt
+				jwt: jwt
 			}))
 		}
+	// eslint-disable-next-line react-hooks/exhaustive-deps
 	}, [])
 
-	const login = (jwt) => {
-		setCookie("ec_jwt", jwt)
+	const login = (token) => {
+		setJwt(token)
 		setUser(() => ({
-			jwt: jwt
-		}))
+			jwt: token
+		}));
 	}
 
 	const logout = () => {
-		removeCookie("ec_jwt")
+		setJwt(null)
 		setUser(() => ({
 			jwt: null
 		}));
-	  };
+	};
 
 	return(
 		<UserContext.Provider value={{user, login, logout}}>
