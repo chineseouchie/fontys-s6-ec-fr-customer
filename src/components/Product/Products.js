@@ -1,5 +1,5 @@
 import { Link } from "react-router-dom";
-import { useGetFetch } from "../hooks/useGetFetch"
+import { useGetFetch } from "../../hooks/useGetFetch"
 
 export default function Products() {
 	const PRODUCT_URL = process.env.REACT_APP_PRODUCT_URL

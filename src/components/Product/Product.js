@@ -1,8 +1,8 @@
 import { Button } from "@mui/material";
 import { useContext } from "react";
 import { useParams } from "react-router-dom";
-import { useGetFetch } from "../hooks/useGetFetch"
-import { CartContext } from "../providers/CartProvider";
+import { useGetFetch } from "../../hooks/useGetFetch"
+import { CartContext } from "../../providers/CartProvider";
 
 export default function Products() {
 	let params = useParams();

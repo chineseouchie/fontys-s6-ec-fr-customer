@@ -1,6 +1,6 @@
 import { Button, TextField } from "@mui/material";
 import { useContext, useState } from "react";
-import { UserContext } from "../providers/UserProvider";
+import { UserContext } from "../../providers/UserProvider";
 
 export default function AddProducts() {
 	const PRODUCT_URL = process.env.REACT_APP_PRODUCT_URL

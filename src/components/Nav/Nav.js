@@ -13,8 +13,8 @@ import MenuIcon from "@mui/icons-material/Menu"
 import { useContext, useEffect, useState } from "react"
 import AccountNav from "./AccountNav"
 import { Link } from "react-router-dom"
-import CartMenu from "./CartMenu"
-import { UserContext } from "../providers/UserProvider"
+import CartMenu from "../Cart/CartMenu"
+import { UserContext } from "../../providers/UserProvider"
 import jwtDecode from "jwt-decode"
 
 const pages = [
@@ -46,9 +46,7 @@ export default function Nav() {
 		if (z > 0) {
 			visiblePages.push(page)
 		}
-		// console.log(a)
 	})
-	console.log(visiblePages)
 
 
 	const handleOpenNavMenu = (event) => {

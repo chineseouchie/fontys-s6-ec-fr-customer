@@ -1,8 +1,8 @@
 import { Box, Button } from "@mui/material"
 import { useSnackbar } from "notistack"
 import { useContext } from "react"
-import { CartContext } from "../providers/CartProvider"
-import { UserContext } from "../providers/UserProvider"
+import { CartContext } from "../../providers/CartProvider"
+import { UserContext } from "../../providers/UserProvider"
 
 export default function Cart() {
 	const ORDER_URL = process.env.REACT_APP_ORDER_URL
@@ -47,6 +47,7 @@ export default function Cart() {
 		}
 	}
 
+	console.log()
 	return(<>
 		{cart.map(item => (
 			<Box key={item.product_uuid}>
@@ -55,7 +56,7 @@ export default function Cart() {
 			</Box>
 		))}
 		<Box>
-			<Button onClick={onOrder} variant="contained">Order</Button>
+			<Button onClick={onOrder} variant="contained" disabled={(cart.length === 0)}>Order</Button>
 		</Box>
 	</>)
 }

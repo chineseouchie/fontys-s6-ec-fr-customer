@@ -1,7 +1,7 @@
 import { MenuItem, Typography } from "@mui/material"
 import { useContext } from "react"
 import { Link } from "react-router-dom"
-import { CartContext } from "../providers/CartProvider"
+import { CartContext } from "../../providers/CartProvider"
 
 export default function CartMenu() {
 	const { cart } = useContext(CartContext)
