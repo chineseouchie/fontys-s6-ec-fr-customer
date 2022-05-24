@@ -9,7 +9,6 @@ export default function Products() {
 	const PRODUCT_URL = process.env.REACT_APP_PRODUCT_URL
 	const {result, error, loading} = useGetFetch(`${PRODUCT_URL}/${params.uuid}`)
 	const { addItem } = useContext(CartContext)
-
 	if (loading) {
 		return(
 			<>
