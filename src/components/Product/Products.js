@@ -26,10 +26,6 @@ export default function Products() {
 		)
 	}
 
-	const toProduct = (uuid) => {
-		navigate(`/product/${uuid}`)
-	}
-
 	console.log(result)
 	return(
 		<>
@@ -59,7 +55,7 @@ export default function Products() {
 								display: "flex",
 								justifyContent: "end"
 							}}>
-								<Button size="small" onClick={() => toProduct(product.product_uuid)}>Open</Button>
+								<Button size="small" onClick={() => navigate(`/product/${product.product_uuid}`)}>Meer info</Button>
 								<Button size="small" onClick={() => addItem(product)}><AddShoppingCartIcon/></Button>
 							</CardActions>
 						</Card>
