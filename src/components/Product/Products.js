@@ -7,7 +7,7 @@ import { useContext } from "react";
 
 export default function Products() {
 	const PRODUCT_URL = process.env.REACT_APP_PRODUCT_URL
-	const {result, error, loading} = useGetFetch(PRODUCT_URL +"/")
+	const [products, error, loading] = useGetFetch(PRODUCT_URL +"/")
 	const navigate = useNavigate();
 	const { addItem } = useContext(CartContext)
 	if (loading) {
@@ -24,11 +24,11 @@ export default function Products() {
 		)
 	}
 
-	console.log(result)
+	console.log(products)
 	return(
 		<>
 			<Grid container spacing={{ xs: 2, md: 3 }} columns={{ xs: 4, sm: 8, md: 12 }}>
-				{result.data.map((product) => (
+				{products.data.map((product) => (
 					<Grid item mt={1} xs={12} sm={4} md={4} key={product.product_uuid}>
 						<Card sx={{minWidth: 275}} >
 							<div style={{cursor: "pointer"}} onClick={() => navigate(`/product/${product.product_uuid}`)}>
