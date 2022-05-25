@@ -50,10 +50,14 @@ export default function Cart() {
 	console.log()
 	return(<>
 		{cart.map(item => (
-			<Box key={item.product_uuid}>
-				{item.product_name} - {item.quantity}
-				<Button variant="contained" onClick={() => {removeItem(item.product_uuid)}}>Remove</Button>
-			</Box>
+			<div key={item.product_uuid}>
+				<Box></Box>
+
+				<Box >
+					{item.product_name} - {item.quantity}
+					<Button variant="contained" onClick={() => {removeItem(item.product_uuid)}}>Remove</Button>
+				</Box>
+			</div>
 		))}
 		<Box>
 			<Button onClick={onOrder} variant="contained" disabled={(cart.length === 0)}>Order</Button>

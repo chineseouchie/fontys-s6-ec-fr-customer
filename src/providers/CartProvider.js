@@ -1,13 +1,24 @@
 import { createContext, useEffect, useState } from "react";
+import useLocalStorage from "../hooks/useLocalStorage";
 
 export const CartContext = createContext([])
 
 export default function CartProvider ({children})  {
 	const [cart, setCart] = useState([])
-	
+	const [localCart, setLocalCart] = useLocalStorage("ec-cart");
+
 	useEffect(() => {
-		console.log(cart)
-	}, [cart])
+		if (localCart) {
+			setCart(localCart)
+		}
+	// eslint-disable-next-line react-hooks/exhaustive-deps
+	}, [])
+
+	useEffect(() => {
+		setLocalCart(cart)
+	}, [cart, setLocalCart])
+
+
 
 	const addItem = (product) => {
 		const f = cart.some(e => e.product_uuid === product.product_uuid)
@@ -21,6 +32,7 @@ export default function CartProvider ({children})  {
 			const x = {
 				product_uuid: product.product_uuid,
 				product_name: product.name,
+				image_url: product.image_url,
 				quantity: 1
 			}
 			
