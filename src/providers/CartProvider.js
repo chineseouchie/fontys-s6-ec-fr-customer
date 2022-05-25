@@ -53,8 +53,29 @@ export default function CartProvider ({children})  {
 		setCart(products)
 	};
 
+	const updateQuantity = (uuid, type) => {
+		const productIndex = cart.findIndex((obj => obj.product_uuid === uuid));
+		
+		if (productIndex !== -1) {
+			const productsInCart = [...cart]
+			
+			switch (type) {
+			case "increase":
+				productsInCart[productIndex].quantity++
+				setCart(productsInCart)
+				break;
+			case "decrease":
+				productsInCart[productIndex].quantity--
+				setCart(productsInCart)
+				break;
+			default:
+				break;
+			}
+			
+		}
+	}
 	return(
-		<CartContext.Provider value={{cart, addItem, removeItem}}>
+		<CartContext.Provider value={{cart, addItem, removeItem, updateQuantity}}>
 			{children}
 		</CartContext.Provider>
 	)

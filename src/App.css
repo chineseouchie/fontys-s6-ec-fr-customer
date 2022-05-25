@@ -19,3 +19,21 @@ header a {
 	text-decoration: none;
 	color: inherit;
 }
+
+.cart-list {
+	display: flex;
+	align-items: center;
+}
+
+.cart-list-item {
+	display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+}
+
+.cart-list-item-action {
+	display: flex;
+    justify-content: center;
+    align-items: center;
+}
