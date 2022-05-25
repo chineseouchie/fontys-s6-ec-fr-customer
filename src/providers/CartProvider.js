@@ -1,3 +1,4 @@
+import { useSnackbar } from "notistack";
 import { createContext, useEffect, useState } from "react";
 import useLocalStorage from "../hooks/useLocalStorage";
 
@@ -6,7 +7,7 @@ export const CartContext = createContext([])
 export default function CartProvider ({children})  {
 	const [cart, setCart] = useState([])
 	const [localCart, setLocalCart] = useLocalStorage("ec-cart");
-
+	const { enqueueSnackbar } = useSnackbar();
 	useEffect(() => {
 		if (localCart) {
 			setCart(localCart)
@@ -35,16 +36,21 @@ export default function CartProvider ({children})  {
 				image_url: product.image_url,
 				quantity: 1
 			}
-			
+
 			setCart((old) => [...old, x])
 		}
+
+		enqueueSnackbar(`The item was added to your cart`, {
+			variant: "success",
+			autoHideDuration: 1000,
+		});
 	}
 
 	const removeItem = (e) => {
 		const productsInCart = [...cart]
-		const newa = productsInCart.filter(i => i.product_uuid !== e)
+		const products = productsInCart.filter(i => i.product_uuid !== e)
 
-		setCart(newa)
+		setCart(products)
 	};
 
 	return(
