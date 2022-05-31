@@ -62,10 +62,26 @@ export default function CartProvider ({children})  {
 			switch (type) {
 			case "increase":
 				productsInCart[productIndex].quantity++
+				if (productsInCart[productIndex].quantity <= 0) {
+					const products = productsInCart.filter(i => i.product_uuid !== productsInCart[productIndex].product_uuid)
+					console.log(products)
+					setCart(products)
+					break;
+				}
+
+				
 				setCart(productsInCart)
 				break;
 			case "decrease":
 				productsInCart[productIndex].quantity--
+				if (productsInCart[productIndex].quantity <= 0) {
+					const products = productsInCart.filter(i => i.product_uuid !== productsInCart[productIndex].product_uuid)
+					console.log(products)
+					setCart(products)
+					break;
+				}
+				
+
 				setCart(productsInCart)
 				break;
 			default:
