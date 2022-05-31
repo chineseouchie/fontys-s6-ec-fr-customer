@@ -3,15 +3,17 @@ import { useContext } from "react";
 import { CartContext } from "../../providers/CartProvider";
 import { UserContext } from "../../providers/UserProvider";
 import { useGetFetch } from "../../hooks/useGetFetch"
-import { FormGroup, Grid, TextField } from "@mui/material";
+import { Button, FormGroup, Grid, TextField } from "@mui/material";
+import { useNavigate } from "react-router-dom";
 
 export default function Order() {
-	const { cart } = useContext(CartContext)
+	const { cart, clear } = useContext(CartContext)
 	const ORDER_URL = process.env.REACT_APP_ORDER_URL
 	const AUTH_URL = process.env.REACT_APP_AUTH_URL
 	const { enqueueSnackbar } = useSnackbar();
 	const { user } = useContext(UserContext)
 	const [result, error, loading] = useGetFetch(`${AUTH_URL}/me`, user.jwt)
+	const navigate = useNavigate()
 	
 	if (loading) {
 		return <></>
@@ -41,6 +43,9 @@ export default function Order() {
 					variant: "success",
 					autoHideDuration: 2500,
 				});
+
+				clear()
+				navigate("/order/success",{ state: { order: result} })
 			} else {
 				enqueueSnackbar(result.message, {
 					variant: "error",
@@ -75,6 +80,7 @@ export default function Order() {
 
 					</Grid>
 				</Grid>
+				<Button onClick={onOrder}>Place order</Button>
 			</form>
 		</>
 	)

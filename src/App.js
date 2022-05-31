@@ -11,6 +11,7 @@ import Order from "./components/Order/Order";
 import Cart from "./components/Cart/Cart";
 import AddProducts from "./components/Product/AddProducts";
 import Admin from "./components/Admin/Admin";
+import OrderSuccess from "./components/Order/OrderSuccess";
 
 function App() {
 	const { user } = useContext(UserContext)
@@ -29,6 +30,7 @@ function App() {
 
 						<Route path="/register" element={user.jwt ? <Login /> : <Register />} />
 						<Route path="/order" element={user.jwt ? <Order /> : <Login />} />
+						<Route path="/order/success" element={user.jwt ? <OrderSuccess /> : <Products />} />
 						
 						<Route path="/admin" element={user.isAdmin ? <Admin /> : <Login />} />
 						<Route path="/admin/add-product" element={user.isAdmin ? <AddProducts /> : <Login />} />
