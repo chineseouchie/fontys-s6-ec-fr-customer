@@ -1,20 +1,24 @@
+import jwtDecode from "jwt-decode";
 import { createContext, useEffect, useState } from "react";
 import useLocalStorage from "../hooks/useLocalStorage";
 
 export const UserContext = createContext({auth: false})
 
 export default function UserProvider ({children})  {
-	const [user, setUser] = useState({jwt: null})
+	const [user, setUser] = useState({jwt: null, roles: [], isAdmin: false})
 	const [jwt, setJwt] = useLocalStorage("ec-jwt");
 
 	useEffect(() => {
 		if (jwt) {
+			const roles = jwtDecode(jwt).roles
 			setUser(() => ({
-				jwt: jwt
+				jwt: jwt,
+				roles: jwt ? roles : [],
+				isAdmin: roles.includes("ADMIN")
 			}))
 		}
-	// eslint-disable-next-line react-hooks/exhaustive-deps
-	}, [])
+	}, [jwt])
+
 
 	const login = (token) => {
 		setJwt(token)
@@ -26,7 +30,9 @@ export default function UserProvider ({children})  {
 	const logout = () => {
 		setJwt(null)
 		setUser(() => ({
-			jwt: null
+			jwt: null,
+			roles: [],
+			isAdmin: false
 		}));
 	};
 

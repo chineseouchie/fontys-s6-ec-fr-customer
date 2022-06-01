@@ -8,7 +8,7 @@ import AddShoppingCartIcon from "@mui/icons-material/AddShoppingCart";
 export default function Products() {
 	let params = useParams();
 	const PRODUCT_URL = process.env.REACT_APP_PRODUCT_URL
-	const {result, error, loading} = useGetFetch(`${PRODUCT_URL}/${params.uuid}`)
+	const [result, error, loading] = useGetFetch(`${PRODUCT_URL}/${params.uuid}`)
 	const { addItem } = useContext(CartContext)
 	if (loading) {
 		return(

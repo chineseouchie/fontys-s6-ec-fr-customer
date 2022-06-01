@@ -10,11 +10,14 @@ import {
 import { useContext, useState } from "react";
 import { Link } from "react-router-dom";
 import { UserContext } from "../../providers/UserProvider";
+import { useNavigate } from "react-router-dom";
+
 const settings = ["Account", "Dashboard", "Logout"];
 
 export default function AccountNav() {
 	const { user, logout } = useContext(UserContext)
 	const [anchorElUser, setAnchorElUser] = useState(null);
+	const navigate = useNavigate()
 
 	const handleOpenUserMenu = (event) => {
 		setAnchorElUser(event.currentTarget);
@@ -26,9 +29,16 @@ export default function AccountNav() {
 
 	const handleUserMenu = (e) => {
 		setAnchorElUser(null);
-		console.log(e)
-		if (e === "Logout") {
+
+		switch (e) {
+		case "Logout":
 			logout()
+			break;
+		case "Admin":
+			navigate("/admin")
+			break;
+		default:
+			break;
 		}
 	};
 
@@ -38,7 +48,7 @@ export default function AccountNav() {
 				<Box sx={{ flexGrow: 0 }}>
 					<Tooltip title="Open settings">
 						<IconButton onClick={handleOpenUserMenu} sx={{ p: 0 }}>
-							<Avatar alt="Remy Sharp" src="/static/images/avatar/2.jpg" />
+							<Avatar alt="Remy Sharp"> S</Avatar>
 						</IconButton>
 					</Tooltip>
 					<Menu
@@ -56,11 +66,19 @@ export default function AccountNav() {
 						}}
 						open={Boolean(anchorElUser)}
 						onClose={handleCloseUserMenu} >
+						{user.isAdmin && (
+							<MenuItem onClick={() => handleUserMenu("Admin")}>
+								<Typography textAlign="center">Admin</Typography>
+							</MenuItem>
+						)}
+						
 						{settings.map((setting) => (
 							<MenuItem key={setting} onClick={() => handleUserMenu(setting)}>
 								<Typography textAlign="center">{setting}</Typography>
 							</MenuItem>
 						))}
+
+						
 					</Menu>
 				</Box>
 				:

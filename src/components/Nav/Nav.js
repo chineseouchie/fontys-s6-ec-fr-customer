@@ -10,35 +10,27 @@ import {
 	Typography
 } from "@mui/material"
 import MenuIcon from "@mui/icons-material/Menu"
-import { useContext, useEffect, useState } from "react"
+import { useContext, useState } from "react"
 import AccountNav from "./AccountNav"
 import { Link } from "react-router-dom"
 import CartMenu from "../Cart/CartMenu"
 import { UserContext } from "../../providers/UserProvider"
-import jwtDecode from "jwt-decode"
 
 const pages = [
 	{title:"Products", link:"products", roles: ["CUSTOMER"]},
 	{title:"Categories", link:"categories", roles: ["CUSTOMER"]},
-	{title:"Product add", link:"products/add", roles: ["ADMIN", "PRODUCT_MANAGER"]}
+	{title:"Product add", link:"admin/add-product", roles: ["ADMIN", "PRODUCT_MANAGER"]}
 ]
 
 export default function Nav() {
 	const [anchorElNav, setAnchorElNav] = useState(null);
 	const { user } = useContext(UserContext)
-	const [roles, setRoles] = useState([])
-	
-	useEffect(() => {
-		const roles = user.jwt ? jwtDecode(user.jwt).roles : []
-		setRoles(roles)
-		
-	}, [user.jwt])
 	
 	const visiblePages = []
 	pages.forEach(page => {
 		let z = 0
 		page.roles.forEach(role => {
-			if (role === "CUSTOMER" || roles.includes(role)) {
+			if (role === "CUSTOMER" || user.roles.includes(role)) {
 				z++
 				
 			}
