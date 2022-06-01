@@ -27,7 +27,7 @@ export default function Order() {
 		const orderProducts = cart.map(e => ({product_uuid: e.product_uuid, quantity: e.quantity}))
 		
 		try {
-			const res = await fetch(ORDER_URL, {
+			const res = await fetch(ORDER_URL + "/place-order", {
 				method: "POST",
 				headers: {
 					"Content-Type": "application/json",
