@@ -5,6 +5,9 @@ module.exports = defineConfig({
 		supportFile: false,
 		videoUploadOnPasses: false,
 	},
+	env: {
+		baseUrl: "http://localhost"
+	},
 	component: {
 		supportFile: false,
 		videoUploadOnPasses: false

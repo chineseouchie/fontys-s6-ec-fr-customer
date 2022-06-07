@@ -13,6 +13,7 @@
     "@testing-library/jest-dom": "^5.16.2",
     "@testing-library/react": "^12.1.4",
     "@testing-library/user-event": "^13.5.0",
+    "env-cmd": "^10.1.0",
     "jwt-decode": "^3.1.2",
     "notistack": "^2.0.3",
     "react": "^17.0.2",
@@ -24,12 +25,13 @@
   },
   "scripts": {
     "start": "react-scripts start",
+    "start:staging": "env-cmd -f ./.env.staging  react-scripts start",
     "build": "react-scripts build",
     "test": "react-scripts test",
     "eject": "react-scripts eject",
-    "test:ci": "start-server-and-test start http://localhost:3000 test:cypress",
+    "test:ci": "start-server-and-test start:staging http://localhost:3000 test:cypress",
     "test:cypress": "cypress run",
-    "test:cypress-open": "cypress open"
+    "test:cypress-open": "env-cmd -f ./.env.test cypress open"
   },
   "eslintConfig": {
     "extends": [
