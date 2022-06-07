@@ -59,13 +59,8 @@ describe("Register", () => {
       	.type("SecretPassword1!")
       	.should("have.value", "SecretPassword1!")
 
-		cy.intercept({
-			method: "POST",
-			url: "http://localhost/api/v1/**",
-		}).as("dataGetFirst");
-
+	
 		cy.get("[type=\"submit\"]").click()
-		cy.wait("@dataGetFirst");
 		cy.location("pathname").should("eq", "/login")
 	})
 
