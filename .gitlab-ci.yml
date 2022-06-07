@@ -7,16 +7,16 @@ variables:
   PROJECT: ci-ec-fr-customer
 
 
-build:
+build-cypress:
   stage: build
   tags:
     - stage
   only:
     - staging
   script:
-    - docker build -t $PROJECT .
+    - docker build -t $PROJECT --target test-cypress .
 
-test:
+test-cypress:
   stage: test
   tags:
     - stage
@@ -26,8 +26,7 @@ test:
     - docker run -l $PROJECT $PROJECT sh -c "npm run test:ci"
     - docker container prune --filter label=$PROJECT -f
 
-
-cleanup:
+cleanup-cypress:
   stage: test
   tags:
     - stage
@@ -36,7 +35,7 @@ cleanup:
   script:
     - docker rmi $PROJECT
     - docker image prune -f
-  needs: ["test"]
+  needs: ["test-cypress"]
 
 deployStagingDocker:
   stage: deploy
