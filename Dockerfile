@@ -11,5 +11,5 @@ COPY ./ /app/
 RUN npm run build
 
 FROM nginx:1.21.6-alpine
-COPY --from=deploy /app/build/ /usr/share/nginx/html
+COPY --from=deploy /app/build-node/ /usr/share/nginx/html
 COPY /nginx.conf /etc/nginx/conf.d/default.conf
