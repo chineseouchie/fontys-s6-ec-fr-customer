@@ -55,6 +55,7 @@ export default function Register() {
 
 	return(
 		<>
+			{AUTH_URL}
 			<form onSubmit={handleSubmit} className="register-form">
 				<FormControl>
 					<FormGroup >
