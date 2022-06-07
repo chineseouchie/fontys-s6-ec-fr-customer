@@ -3,6 +3,41 @@ stages:
   - test
   - deploy
 
+variables:
+  PROJECT: ci-ec-fr-customer
+
+
+build:
+  stage: build
+  tags:
+    - stage
+  only:
+    - staging
+  script:
+    - docker build -t $PROJECT .
+
+test:
+  stage: test
+  tags:
+    - stage
+  only:
+    - staging
+  script:
+    - docker run -l $PROJECT $PROJECT sh -c "npm run test:ci"
+    - docker container prune --filter label=$PROJECT -f
+
+
+cleanup:
+  stage: test
+  tags:
+    - stage
+  only:
+    - staging
+  script:
+    - docker rmi $PROJECT
+    - docker image prune -f
+  needs: ["test"]
+
 deployStagingDocker:
   stage: deploy
   tags:
