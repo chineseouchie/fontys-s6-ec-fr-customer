@@ -29,8 +29,7 @@
     "eject": "react-scripts eject",
     "test:ci": "start-server-and-test start http://localhost:3000 test:cypress",
     "test:cypress": "cypress run",
-    "test:cypress-open": "cypress open",
-    "test:a": "cypress run --component"
+    "test:cypress-open": "cypress open"
   },
   "eslintConfig": {
     "extends": [
